@@ -662,7 +662,7 @@ export class AssistantStream
         accValue += deltaValue;
       } else if (typeof accValue === 'number' && typeof deltaValue === 'number') {
         accValue += deltaValue;
-      } else if (isObj(accValue) && isObj(deltaValue)) {
+      } else if (isObj(accValue) && isObj(deltaValue) && !["__proto__", "constructor", "prototype"].includes(key)) {
         accValue = this.accumulateDelta(accValue as Record<string, any>, deltaValue as Record<string, any>);
       } else if (Array.isArray(accValue) && Array.isArray(deltaValue)) {
         if (accValue.every((x) => typeof x === 'string' || typeof x === 'number')) {
